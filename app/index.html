@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>広告管理ツール｜Google広告の週次チェック：ムダな検索語句・除外キーワード案・承認してから反映</title>
+<meta name="description" content="広告管理ツール：Google広告に貼るスクリプトが毎週、コンバージョン0件で1件あたり費用を超えた検索語句を見つけ、除外キーワード案を出し、あなたが承認した語句だけを追加します。OAuth連携・APIキー不要。広告運用ツール・広告キャンペーン管理に。">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="https://getreadystack.com/">ReadyStack</a>
+  <div class="langs" id="langs" role="group" aria-label="Language">
+    <button data-l="ja">日本語</button><button data-l="en">English</button><button data-l="de">Deutsch</button><button data-l="es">Español</button><button data-l="pt">Português</button>
+  </div>
+</header>
+<main>
+  <section class="hero">
+    <h1 data-t="h1">広告管理ツール｜Google広告の週次チェック：ムダな検索語句・除外キーワード案・承認してから反映</h1>
+    <p class="tags" data-t="tags">広告運用ツール · 広告キャンペーン管理 · 自分のアカウントに貼るスクリプト、APIキー不要</p>
+    <p class="lede"><b data-t="lede1"></b> <span data-t="lede2"></span></p>
+    <ul class="beats"><li data-t="b1"></li><li data-t="b2"></li><li data-t="b3"></li></ul>
+    <div class="cta">
+      <button id="trySample" class="btn pri" data-t="tryS"></button>
+      <button id="tryCsv" class="btn" data-t="tryC"></button>
+      <button id="tryScript" class="btn" data-t="tryG"></button>
+      <a class="btn buy" href="#buy" data-t="buyH"></a>
+    </div>
+  </section>
+
+  <section id="csvBox" class="panel" hidden>
+    <p class="note" data-t="csvHelp"></p>
+    <textarea id="csvIn" rows="6" placeholder="検索語句,マッチタイプ,キャンペーン,広告グループ,クリック数,表示回数,費用,コンバージョン"></textarea>
+    <p class="row"><button id="csvRun" class="btn pri" data-t="csvRun"></button> <label class="btn file"><span data-t="csvFile"></span><input id="csvFile" type="file" accept=".csv,.tsv,.txt"></label> <span id="csvMsg" class="err"></span></p>
+  </section>
+
+  <section id="gPanel" class="panel" hidden>
+    <p class="note" data-t="gHelp"></p>
+    <p class="note small" data-t="gSends"></p>
+    <div id="gBox" hidden>
+      <textarea id="gCode" rows="10" readonly spellcheck="false"></textarea>
+      <p class="row"><button id="gCopy" class="btn" data-t="gCopy"></button> <button id="gLoad" class="btn pri" data-t="gLoad"></button> <span id="gMsg" class="err"></span></p>
+    </div>
+  </section>
+
+  <section id="result" class="panel result" hidden aria-live="polite"></section>
+
+  <section id="pro" class="panel">
+    <h2 data-t="proH"></h2>
+    <p class="row"><label class="fld"><span data-t="key"></span> <input id="keyIn" autocomplete="off" spellcheck="false"></label> <button id="keyBtn" class="btn" data-t="keyBtn"></button> <span id="keyMsg" class="note"></span></p>
+    <div id="proBody"></div>
+  </section>
+
+  <section id="buy" class="panel buybox">
+    <h2 data-t="buyH"></h2>
+    <p class="note" data-t="b3"></p>
+    <div class="plans">
+      <a id="buyM" class="btn pri" href="https://getreadystack.com/api/buy/web/kokoku-kanri-tool-google-ads-weekly-check"><span data-t="buyM"></span> · <span class="price" data-plan="monthly">$29</span>/月</a>
+      <a id="buyY" class="btn" href="https://getreadystack.com/api/buy/web/kokoku-kanri-tool-google-ads-weekly-check.yearly"><span data-t="buyY"></span> · <span class="price" data-plan="yearly">$290</span>/年</a>
+      <a id="buyA" class="btn" href="https://getreadystack.com/api/buy/web/kokoku-kanri-tool-google-ads-weekly-check.agency"><span data-t="buyA"></span> · <span class="price" data-plan="agency">$79</span>/月</a>
+    </div>
+    <p class="note small" data-t="buyWhy"></p>
+    <p class="note small" data-t="scope"></p>
+  </section>
+
+  <section class="panel more">
+    <h2 data-t="more"></h2>
+    <p><a href="https://getreadystack.com/apps/kensaku-juni-check-daily-rank-tracker/" data-t="moreA"></a> · <a href="https://getreadystack.com/apps/" data-t="allTools"></a></p>
+  </section>
+</main>
+<footer class="foot"><small>ReadyStack · getreadystack.com · Google 広告は Google LLC の商標です。当ツールは Google とは無関係です。</small></footer>
+<script src="kk_engine.js"></script>
+<script src="kk_sample.js"></script>
+<script src="kk_i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
