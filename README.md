@@ -23,4 +23,4 @@ Pro：毎週の履歴・前週比較・承認→自動追加・変更ログ・�
 The free part works without a key. The Pro part opens with a licence key from https://getreadystack.com/api/buy/web/kokoku-kanri-tool-google-ads-weekly-check — paste it into the key box in the app.
 The key is checked at https://getreadystack.com/api/lic, the same check the web page uses.
 
-© 2026 ReadyStack · https://getreadystack.com
+© 2026 Rulestamp · https://getreadystack.com
