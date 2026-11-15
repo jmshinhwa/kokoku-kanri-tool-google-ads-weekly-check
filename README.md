@@ -1,26 +1,46 @@
-# 広告管理ツール｜Google広告の週次チェック：ムダな検索語句・除外キーワード案・承認してから反映
+# 広告管理ツール｜Google広告の週次チェック（Google 広告スクリプト）
 
-広告管理ツール — Google広告に貼るスクリプトで毎週ムダな検索語句を見つけ、承認した除外キーワードだけを追加
+Google 広告の「スクリプト」に1回貼るだけで、毎週、直近7日間の検索語句を読み、ムダな検索語句と除外キーワード案を出します。
+**あなたが承認した除外キーワードだけ**を次の実行で追加します。承認がなければ何も変えません。OAuth 連携・開発者トークン・API キーは不要です。
 
-広告管理ツール：Google広告の「スクリプト」に1回貼るだけで、毎週、直近7日間の検索語句を監査します。OAuth連携・開発者トークン・APIキーは不要です。
+- ページ（スクリプトの発行・結果・承認）: https://getreadystack.com/ja/apps/kokoku-kanri-tool-google-ads-weekly-check/
+- スクリプト本体: [`app/kk_script.gs`](app/kk_script.gs)（110行・読めば全部わかる長さ）
 
-• 記入例（架空のシューズ通販・7日間）：費用 ¥47,380 のうち、コンバージョン0件で1件あたり費用 ¥3,384 を超えた検索語句に ¥9,040（19.08%）。
-• 承認してから反映：チェックを入れた除外キーワード（[完全一致] / "フレーズ一致"）だけを次のスクリプト実行で追加し、日付つき変更ログに残します。承認がなければ何も変わりません。
-• 全角/半角・半角ｶﾅの揺れを同じ語句として合計、円表示、日本語のレポートとアラートメール。
-• 毎月の理由：毎週の監査を前週と比べ（新しいムダ語句・直った語句）、お金が漏れた週だけアラートメール。週ごとの履歴と変更ログが残ります。
-• 解約すると毎週の自動監査・アラート・承認→反映が止まります。CSVで貼る1週間の無料チェックは使い続けられます。
+## 使い方（5分）
 
-無料：サンプル、CSV貼り付け（ブラウザ内で計算）、スクリプトで1アカウントの最新週。
-Pro：毎週の履歴・前週比較・承認→自動追加・変更ログ・アラートメール・CSV・印刷/PDF。代理店プランは最大10アカウント。
+1. 上のページを開き、自分のアカウント用のスクリプトを出します。`ACCT`（このアカウントの番号）と `TOKEN`（このアカウント専用の合言葉・他人に見せない）が入った状態で出ます。
+2. Google 広告 → **ツール → 一括操作 → スクリプト → ＋** を開き、出てきたコードを全部貼ります。
+3. 「承認」を押して、スクリプトに広告アカウントへのアクセスを許可します。
+4. まず **プレビュー** で実行します。プレビューでは何も追加せず、ログに「追加する予定」だけが出ます。
+5. 頻度を **毎週** にして保存します。実行ログの最後に「結果を見る: …」の URL が出ます。
 
-広告運用ツール・広告キャンペーン管理として使えます。P-MAX・ショッピング・ディスプレイの検索語句の除外、入札や予算の自動変更はしません。成果の向上は約束しません。
+## スクリプトが読むもの・送るもの
 
-## Use it
-- On the web (always the latest version): https://getreadystack.com/ja/apps/kokoku-kanri-tool-google-ads-weekly-check/
-- Offline: download `kokoku-kanri-tool-google-ads-weekly-check-v1.0.0.zip` from the Releases page, unzip it and open `app/index.html` in your browser (or serve the `app/` folder with any static server).
+- 読む: 直近7日間の検索語句レポート（語句・一致タイプ・キャンペーン・広告グループ・クリック数・表示回数・費用・コンバージョン・コンバージョン値）と、キャンペーンの同じ数字（予算による表示機会損失率を含む）。費用の多い順に最大5,000語句。
+- 送る: 上の数字だけをページのサーバーへ。**送らないもの**: 広告文・入札や予算の設定値・顧客データ・ログイン情報。
 
-## Pro
-The free part works without a key. The Pro part opens with a licence key from https://getreadystack.com/api/buy/web/kokoku-kanri-tool-google-ads-weekly-check — paste it into the key box in the app.
-The key is checked at https://getreadystack.com/api/lic, the same check the web page uses.
+## スクリプトが変えるもの（これだけ）
+
+- ページで **あなたが承認した** 除外キーワード（`[完全一致]` / `"フレーズ一致"`）を、指定キャンペーン（指定がなければ有効な検索キャンペーン全部）に追加します。
+- 追加の結果（日時・語句・成功/失敗）を送り返し、ページの日付つき変更ログに残します。
+- 入札・予算・広告文・P-MAX/ショッピング/ディスプレイの設定は変えません。
+
+## 承認の流れ
+
+週次の結果 → 除外キーワード案にチェック → 「承認」 → 次のスクリプト実行で追加 → 変更ログに記録。承認しなかった案は追加されません。
+
+## 無料で使える範囲
+
+サンプル、CSV 貼り付け（ブラウザ内で計算）、スクリプトで1アカウントの最新週の監査。
+
+---
+
+## English (short)
+
+A Google Ads script for a weekly search-terms check: it reads the last 7 days of search terms and campaign numbers, flags wasted terms and suggests negative keywords, and adds **only the negatives you approved** on the page at the next run (preview runs add nothing). No OAuth, developer token or API key.
+Install: open the page above → get your script (with your `ACCT` and `TOKEN`) → Google Ads → Tools → Bulk actions → Scripts → + → paste → Authorize → Preview → set frequency to Weekly.
+It never changes bids, budgets, ads or P-MAX/Shopping/Display settings. The page is in Japanese.
+
+Google 広告は Google LLC の商標です。このツールは Google とは無関係です。成果の向上は約束しません。
 
 © 2026 Rulestamp · https://getreadystack.com
